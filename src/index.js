@@ -1,18 +1,16 @@
-import { renderHomePage } from "./home.js";
-import { renderMenuPage } from "./menu.js";
+import "./styles/reset.css";
+import "./styles/config.css";
+import "./styles/global.css";
+import "./styles/style.css";
+import "./styles/add_button.css";
+import "./styles/header.css";
+import "./styles/sidebar.css";
+import "./styles/task.css";
+import "./styles/task_modal.css";
+import "./styles/footer.css";
 
-const navBar = document.querySelector('ul');
-let contentDiv = document.querySelector('#content');
+import screenController from './screenController.js';
 
-renderHomePage();
+const todoApp = (function() {
 
-navBar.addEventListener("click", e => {
-    contentDiv.innerHTML = '';
-
-    if (e.target.getAttribute("id") === "home-btn") {
-        renderHomePage();
-    } 
-    else if (e.target.getAttribute("id") === "menu-btn") {
-        renderMenuPage();
-    } 
-});
+})();

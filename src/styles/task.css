@@ -1,0 +1,61 @@
+.task__list__wrapper {
+    display: flex;
+    flex-direction: column;
+    max-width: 80%;
+    margin: 0 auto;
+    margin-top: 1rem;
+  
+    & > .task__wrapper {
+      display: flex;
+      border-bottom: 0.75px solid var(--border-light);
+      justify-content: space-between;
+      align-items: center;
+      height: 4rem;
+      padding-top: 10px;
+  
+      & .task__item {
+        display: flex;
+        font-size: var(--font-size-s);
+        position: relative;
+        margin: 50px;
+        
+  
+        &::before {
+          content: "";
+          width: 1rem;
+          height: 1rem;
+          border-radius: 50%;
+  
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          margin: auto 0;
+          margin-left: -32px;
+    
+          /* todo: to change this to be dynamic value based on priority */
+          background-color: var(--priority-medium-fill);
+          outline: 2px solid var(--priority-medium-border);
+          outline-offset: 4px;
+        }
+  
+        & > span:last-of-type {
+          margin-left: 16px;
+          border-radius: 1rem;
+          border: 1px solid var(--border-dark);
+          padding: 0 12px;
+          background-color: var(--bg-color-secondary);
+          font-size: var(--font-size-xs);
+          align-content: center;
+        }
+      }
+  
+      & > .task__action--controller {
+        display: flex;
+        gap: var(--space-m);
+      
+        & > button {
+          /* todo: change to icon */
+        }
+      }
+    }
+}
