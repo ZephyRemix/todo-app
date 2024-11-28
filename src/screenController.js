@@ -2,82 +2,37 @@ import task from './task.js';
 import taskModal from './taskModal.js';
 
 const screenController = (function() {
-    // cache DOM 
-    const displayModalButton = document.querySelector(".addTask");
-    // const hideModalButton = document.querySelector("#cancelTaskButton");
-    // const addTaskButton = document.querySelector("#addTaskButton");
     
-
     const taskContainer = document.querySelector(".task__container");
-    const taskColumnWrapper = document.querySelector(".task__wrapper");
-    const taskItemWrapper = document.querySelector(".task__item");
-    const taskName = document.querySelector("#name");
-    const taskDate = document.querySelector("#date");
-    const taskPriority = document.querySelector("#priority");
-    
-    // bind events
-    displayModalButton.addEventListener("click", displayModal);
-    // hideModalButton.addEventListener("click", hideModal);
-    // addTaskButton.addEventListener("click", addTask);
+    const taskWrapper = document.querySelector(".task__wrapper");
+    const displayAddTaskModal = document.querySelector(".addTask");
 
-    function displayModal() {
-        displayModalButton.remove();
-        const taskModalContainer = taskModal.createTaskModal();
-        taskContainer.appendChild(taskModalContainer);
+    displayAddTaskModal.addEventListener("click", renderAddTaskModal);
+
+    function renderAddTaskModal() {
+        displayAddTaskModal.remove();
+        console.log(taskModal);
+        taskModal.render();
     }
 
-    function hideModal(taskModal) {
-        taskModal.classList.add("task__modal_hidden");
-        taskColumnWrapper.appendChild(displayModalButton);
-    }
+    function renderTask(e) {
+        const name = document.querySelector("#name");
+        const dueDate = document.querySelector("#date");
+        const priority = document.querySelector("#priority");
 
-    function addTask(e) {
-        const taskModal = document.querySelector(".task__modal");
-        const form = document.querySelector("form");
-        const taskName = document.querySelector("#name");
-        const taskDate = document.querySelector("#date");
-        const taskPriority = document.querySelector("#priority");
-
-        console.log()
-        task.createTask(taskName.value, taskDate.value, taskPriority.value);
-        form.reset();
-        hideModal(taskModal);
-    }
-
-    function addTaskBtnEventListener(btnGroup) {
-        btnGroup.addEventListener("click", function(e) {
-            runBtnAction(e);
-        });
-    }
-
-    function runBtnAction(e) {
-        const taskItem = e.target.parentElement.parentElement.parentElement;
-        if (e.target.textContent === "Delete") {
-            taskItem.remove();
-        } else if (e.target.textContent === "Edit") {
-            const editTaskModal = taskModalContainer.createTaskModal();
-            editTaskModal.classList.remove("task__modal_hidden");
-            taskItem.appendChild(editTaskModal);
-        } else {
-            console.log("Error in button clicked");
-            return;
-        }
+        console.log(name.value);
+        task.createTask(name, dueDate, priority);
     }
 
     function addModalBtnEventListener(btn) {
-        if (btn.id === "cancelTaskButton") {
-            btn.addEventListener("click", hideModal);
-        } else if (btn.id === "addTaskButton") {
-            btn.addEventListener("click", function(e) {
-                addTask(e);
-            });
-        } else {
-            console.log("Error in button clicked");
-            return;
+        if (btn.id === "addTaskButton") {
+            renderTask(e);
+        } else if (btn.id === "cancelTaskButton") {
+
         }
     }
 
-    return {addTaskBtnEventListener, addModalBtnEventListener};
+    return {addModalBtnEventListener};
 })();
 
 export default screenController;

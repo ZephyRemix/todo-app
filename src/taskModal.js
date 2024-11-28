@@ -1,25 +1,25 @@
-import screenController from "./screenController";
+import task from './task.js'
 
 const taskModal = (function() {
 
-    function createTaskModal() {
-        const taskModalDiv = document.createElement("div");
-        taskModalDiv.classList.add("task__modal");
+    // cache DOM
+    const taskContainer = document.querySelector(".task__container");
+    const displayAddTaskModal = document.querySelector(".addTask");
 
-        let form = document.createElement("form");
+    // pre-generate task modal
+    const taskModalDiv = document.createElement("div");
+    taskModalDiv.classList.add("task__modal");
 
-        form = generateNameInput(form);
+    let form = document.createElement("form");
 
-        const taskDetailsContainer = generateTaskDetails();
-        const taskControllerContainer = generateTaskController();
-        
-        form.appendChild(taskDetailsContainer);        
-        taskModalDiv.appendChild(form);
-        taskModalDiv.appendChild(taskControllerContainer);
+    form = generateNameInput(form);
 
-        return taskModalDiv;
-    }
+    const taskDetailsContainer = generateTaskDetails();
+    const taskControllerContainer = generateTaskController();
     
+    form.appendChild(taskDetailsContainer);        
+    taskModalDiv.appendChild(form);
+    taskModalDiv.appendChild(taskControllerContainer);
 
 
     function generateNameInput(form) {
@@ -109,8 +109,8 @@ const taskModal = (function() {
         addTaskBtn.id = "addTaskButton";
         addTaskBtn.textContent = "Add Task";
 
-        screenController.addModalBtnEventListener(cancelTaskBtn);
-        screenController.addModalBtnEventListener(addTaskBtn);
+        addModalBtnEventListener(cancelTaskBtn);
+        addModalBtnEventListener(addTaskBtn);
 
         taskControllerContainer.appendChild(cancelTaskBtn);
         taskControllerContainer.appendChild(addTaskBtn);
@@ -118,7 +118,45 @@ const taskModal = (function() {
         return taskControllerContainer;
     }
 
-    return {createTaskModal};
+    function generateTask() {
+        const name = document.querySelector("#name");
+        const dueDate = document.querySelector("#date");
+        const priority = document.querySelector("#priority"); 
+
+        task.createTask(name.value, dueDate.value, priority.value);
+    }
+
+    function resetForm() {
+        const form = document.querySelector("form");
+        form.reset();
+    }
+
+    function hideModalDisplay() {
+        taskModalDiv.remove();
+        taskContainer.appendChild(displayAddTaskModal);
+    }
+
+    function addModalBtnEventListener(btn) {
+        if (btn.id === "addTaskButton") {
+            btn.addEventListener("click", function () {
+                generateTask();
+                resetForm();
+                hideModalDisplay();
+            });
+        } else if (btn.id === "cancelTaskButton") {
+            btn.addEventListener("click", function () {
+                hideModalDisplay();
+            });
+        }
+    }
+
+    function render() {
+        taskContainer.appendChild(taskModalDiv);
+    }
+
+    
+
+    return {render};
 })();
 
 export default taskModal;
