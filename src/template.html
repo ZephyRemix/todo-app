@@ -78,29 +78,23 @@
     
         <main>
             <!-- <h2>Inbox</h2> -->
-            <div class="task__list__wrapper">
+            <div class="task__container">
                 <div class="task__wrapper">
                     <div class="task__item">
-                      <span>Task 1</span>
-                      <span>Due date</span>
-                    </div>
-                    <div class="task__action--controller">
-                      <button>Edit</button>
-                      <button>Delete</button>
-                    </div>
-                </div>
-                <div class="task__wrapper">
-                    <div class="task__item">
-                      <span>Task 2</span>
-                      <span>Due date</span>
-                    </div>
-                    <div class="task__action--controller">
-                        <button>Edit</button>
-                        <button>Delete</button>
+                      <div class="task__item--details"> 
+                        <label class="container">Task #1
+                            <input type="radio" name="task_completion_checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                        <span>Due date</span>
+                        <div class="task__action--controller">
+                            <button>Edit</button>
+                            <button>Delete</button>
+                        </div>
+                      </div>
                     </div>
                 </div>
-            </div>
-            <div>
+
                 <button class="button--add addTask">
                     <span>
                         <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="hsl(114deg 27% 38%)">
@@ -109,14 +103,14 @@
                     </span>
                     <span>Add task</span>
                 </button>
-                <div class="task__modal task__modal_hidden">
+                <!-- <div class="task__modal task__modal_hidden">
                   <form>
                     <label for="task" class="visually-hidden">Task name</label>
                     <input type="text" id="name" name="name" required placeholder="Meditation"/>
 
                     <div class="task__new-details">
                         <label for="date" class="visually-hidden">Date</label>
-                        <input type="date" id="date" name="date" required />
+                        <input type="date" id="date" name="date"/>
 
                         <label for="priority" class="visually-hidden">Priority level</label>
                         <select name="priority" id="priority">
@@ -128,11 +122,11 @@
                     </div>
                   </form>
 
-                    <div class="task__modal--controller">
-                        <button id="cancelTaskButton">Cancel</button>
-                        <button id="addTaskButton">Add Task</button>
-                    </div>
-                </div>
+                  <div class="task__modal--controller">
+                    <button id="cancelTaskButton">Cancel</button>
+                    <button id="addTaskButton">Add Task</button>
+                  </div>
+                </div> -->
             </div>
         </main>
 

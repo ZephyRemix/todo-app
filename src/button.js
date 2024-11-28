@@ -1,6 +1,8 @@
+import screenController from "./screenController";
+
 const button = (function() {
     
-    function createButton () {
+    function createButton() {
         const buttonGroup = document.createElement("div");
         buttonGroup.classList.add("task__action--controller");
 
@@ -9,6 +11,8 @@ const button = (function() {
 
         buttonGroup.appendChild(editButton);
         buttonGroup.appendChild(deleteButton);
+
+        screenController.addTaskBtnEventListener(buttonGroup);
 
         return buttonGroup;
     }

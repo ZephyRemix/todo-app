@@ -1,31 +1,42 @@
 import button from './button.js'
 
 const task = (function() {
-    
-    function createTask (name, dueDate, priority) {
-        render(name, dueDate, priority);
-    }
 
-    function render(name, dueDate, priority) {
-        const taskListWrapper = document.querySelector(".task__list__wrapper");
-        const taskWrapper = document.createElement("div");
+    function createTask(name, dueDate, priority) {
+
+        const taskWrapper = document.querySelector(".task__wrapper");
         const taskItem = document.createElement("div");
-        const taskName = document.createElement("span");
-        const taskDueDate = document.createElement("span");
+        const taskDetails = document.createElement("div");
+        const taskLabel = document.createElement("label");
+        const radioInput = document.createElement("input");
+        const checkmarkSpan = document.createElement("span");
+        const dueDateSpan = document.createElement("span");
 
         const buttonGroup = button.createButton();
 
-        taskName.innerText = name;
-        taskDueDate.innerText = dueDate;
-        
-        taskWrapper.classList.add("task__wrapper");
         taskItem.classList.add("task__item");
+        taskDetails.classList.add("task__item--details");
 
-        taskItem.appendChild(taskName);
-        taskItem.appendChild(taskDueDate);
+        taskLabel.classList.add("container");
+        taskLabel.textContent = name;
+
+        radioInput.setAttribute("type", "radio");
+        radioInput.setAttribute("name", "task_completion_checkbox");
+
+        checkmarkSpan.classList.add("checkmark");
+
+        dueDateSpan.textContent = dueDate;
+
+        taskLabel.appendChild(radioInput);
+        taskLabel.appendChild(checkmarkSpan);
+
+        taskDetails.appendChild(taskLabel);
+        taskDetails.appendChild(dueDateSpan);
+        taskDetails.appendChild(buttonGroup);
+
+        taskItem.appendChild(taskDetails);
+
         taskWrapper.appendChild(taskItem);
-        taskWrapper.appendChild(buttonGroup);
-        taskListWrapper.appendChild(taskWrapper);
     }
     
 
